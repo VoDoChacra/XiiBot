@@ -18,10 +18,7 @@ class XiiMessage extends Message implements IXiiMessage {
     }
 
     getArgsAndCommand () {
-        const words = this.content.split(/ +/g)
-
-        this.command = words[0]
-        this.args = words.slice(1)
+        [this.command, ...this.args] = this.command.split(/ +/g)
     }
 }
 
