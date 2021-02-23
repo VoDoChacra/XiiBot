@@ -1,10 +1,7 @@
-import dotenv from "dotenv"
-
 import { Client, Structures } from "discord.js"
 import { IXiiClient } from "../../structures/IXiiClient"
 import { XiiEventer } from "../listeners/eventer"
 import { XiiMessage } from "./xiiMessage"
-dotenv.config()
 
 class XiiClient extends Client implements IXiiClient {
     public prefix: string
