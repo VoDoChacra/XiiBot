@@ -1,9 +1,10 @@
 import { Message } from "discord.js"
-import { IXiiMessage } from "../../structures/IXiiMessage"
+import { IXiiMessage } from "./interfaces/IXiiMessage"
 
 class XiiMessage extends Message implements IXiiMessage {
     public args: string[] = []
     public command: string = ""
+    public server = this.guild
 
     validate () {
         return !this.author.bot

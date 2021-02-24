@@ -1,7 +1,8 @@
 export interface IXiiMessage {
     args: string[]
-    command: string | null
+    command: string
     createdTimestamp: number
+    server: any
     validate(): boolean
     hasPrefix(prefix?: string): boolean
     removePrefix(prefix?: string): void

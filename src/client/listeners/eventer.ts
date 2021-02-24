@@ -1,14 +1,14 @@
-import path from "path"
+import { join } from "path"
 import { readdirSync } from "fs"
-import { XiiListener } from "../structures/XiiListener"
+import { XiiListener } from "../structures/xiiListener"
 
 export class XiiEventer {
     public listeners: XiiListener[] = []
 
     public getListeners (eventsPath: string = "src") {
-        readdirSync(path.join(__dirname, eventsPath)).forEach(event => {
+        readdirSync(join(__dirname, eventsPath)).forEach(event => {
             event = event.slice(0, -3)
-            const { EventListener } = require(path.join(__dirname, eventsPath, event))
+            const { EventListener } = require(join(__dirname, eventsPath, event))
 
             if (EventListener?.prototype instanceof XiiListener) { this.listeners.push(new EventListener()) }
         })

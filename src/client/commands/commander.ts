@@ -1,14 +1,14 @@
 import path from "path"
 import { readdirSync } from "fs"
-import { XiiCommand } from "../structures/XiiCommand"
-import { XiiClient } from "../structures/xiiClient"
+import { XiiCommand } from "../structures/xiiCommand"
+import { IXiiClient } from "../structures/interfaces/IXiiClient"
 
 export class XiiCommander {
-    public client: XiiClient
+    public client: IXiiClient
     public commands: Map<string, XiiCommand>
     public aliases: Map<string, string>
 
-    constructor (client: XiiClient) {
+    constructor (client: IXiiClient) {
         this.client = client
         this.aliases = new Map()
         this.commands = new Map()

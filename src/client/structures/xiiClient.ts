@@ -1,5 +1,5 @@
 import { Client, Structures } from "discord.js"
-import { IXiiClient } from "../../structures/IXiiClient"
+import { IXiiClient } from "./interfaces/IXiiClient"
 import { XiiCommander } from "../commands/commander"
 import { XiiEventer } from "../listeners/eventer"
 import { XiiMessage } from "./xiiMessage"
@@ -8,6 +8,10 @@ class XiiClient extends Client implements IXiiClient {
     public prefix: string
     public eventer: XiiEventer
     public commander: XiiCommander
+
+    get ping () {
+        return this.ws.ping
+    }
 
     constructor ({
         prefix,
@@ -31,10 +35,6 @@ class XiiClient extends Client implements IXiiClient {
             })
 
         this.commander.getCommands()
-    }
-
-    get ping () {
-        return this.ws.ping
     }
 
     getCommand (commandName: string) {
