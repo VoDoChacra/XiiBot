@@ -33,13 +33,13 @@ class XiiClient extends Client implements IXiiClient {
         this.commander.getCommands()
     }
 
-    get ping() {
+    get ping () {
         return this.ws.ping
     }
 
     getCommand (commandName: string) {
         let command = this.commander.commands.get(commandName)
-        if(!command) {
+        if (!command) {
             const commandAliase = this.commander.aliases.get(commandName) || ""
             command = this.commander.commands.get(commandAliase)
         }
