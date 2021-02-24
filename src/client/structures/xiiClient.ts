@@ -1,11 +1,13 @@
 import { Client, Structures } from "discord.js"
 import { IXiiClient } from "../../structures/IXiiClient"
+import { XiiCommander } from "../commands/commander"
 import { XiiEventer } from "../listeners/eventer"
 import { XiiMessage } from "./xiiMessage"
 
 class XiiClient extends Client implements IXiiClient {
     public prefix: string
     public eventer: XiiEventer
+    public commander: XiiCommander
 
     constructor ({
         prefix,
@@ -19,6 +21,7 @@ class XiiClient extends Client implements IXiiClient {
         this.token = token
         this.prefix = prefix
         this.eventer = new XiiEventer()
+        this.commander = new XiiCommander(this)
 
         this.eventer.getListeners()
             .forEach(listener => {
@@ -26,10 +29,22 @@ class XiiClient extends Client implements IXiiClient {
                     listener.on(this, ...args)
                 })
             })
+
+        this.commander.getCommands()
     }
 
-    getCommand (message: string) {
-        return message
+    get ping() {
+        return this.ws.ping
+    }
+
+    getCommand (commandName: string) {
+        let command = this.commander.commands.get(commandName)
+        if(!command) {
+            const commandAliase = this.commander.aliases.get(commandName) || ""
+            command = this.commander.commands.get(commandAliase)
+        }
+
+        return command
     }
 }
 

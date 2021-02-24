@@ -3,7 +3,7 @@ import { IXiiMessage } from "../../structures/IXiiMessage"
 
 class XiiMessage extends Message implements IXiiMessage {
     public args: string[] = []
-    public command: string | null = null
+    public command: string = ""
 
     validate () {
         return !this.author.bot
@@ -18,7 +18,7 @@ class XiiMessage extends Message implements IXiiMessage {
     }
 
     getArgsAndCommand () {
-        [this.command, ...this.args] = this.command.split(/ +/g)
+        [this.command, ...this.args] = this.content.split(/ +/g)
     }
 }
 
