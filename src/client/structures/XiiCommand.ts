@@ -12,10 +12,10 @@ export abstract class XiiCommand {
         botPerms?: string[],
         userPerms?: string[]
     } = {
-            botPerms: [],
-            userPerms: []
-        }
+        botPerms: [],
+        userPerms: []
+    }
 
-    load?(client: IXiiClient): void { }
-    execute(client: IXiiClient, message: IXiiMessage, ...args: any[]): void { }
+    load? (client: IXiiClient): void { }
+    execute (client: IXiiClient, message: IXiiMessage, ...args: any[]): void { }
 }

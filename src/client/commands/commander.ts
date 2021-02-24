@@ -8,13 +8,13 @@ export class XiiCommander {
     public commands: Map<string, XiiCommand>
     public aliases: Map<string, string>
 
-    constructor(client: XiiClient) {
+    constructor (client: XiiClient) {
         this.client = client
         this.aliases = new Map()
         this.commands = new Map()
     }
 
-    public getCommands(commandsPath = "src") {
+    public getCommands (commandsPath = "src") {
         readdirSync(path.join(__dirname, commandsPath)).forEach(commandName => {
             commandName = commandName.slice(0, -3)
             const { Command } = require(path.join(__dirname, commandsPath, commandName))
